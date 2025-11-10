@@ -1,0 +1,192 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "Swagger documentation",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3003",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Users related endpoints"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/movies/": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "List of all movies",
+            "schema": {
+              "$ref": "#/definitions/GetMovie"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Movies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "New movie object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateMovie"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Movie created successfully",
+            "schema": {
+              "$ref": "#/definitions/GetMovie"
+            }
+          }
+        }
+      }
+    },
+    "/movies/{id}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Movie ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movie found",
+            "schema": {
+              "$ref": "#/definitions/GetMovie"
+            }
+          },
+          "404": {
+            "description": "Movie not found"
+          },
+          "500": {
+            "description": "Failed to fetch movie details"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Movies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Movie ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated movie object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateMovie"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movie updated successfully",
+            "schema": {
+              "$ref": "#/definitions/GetMovie"
+            }
+          },
+          "404": {
+            "description": "Movie not found"
+          },
+          "500": {
+            "description": "Failed to update movie"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Movies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Movie ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movie deleted successfully",
+            "schema": {
+              "$ref": "#/definitions/GetMovie"
+            }
+          },
+          "404": {
+            "description": "Movie not found"
+          },
+          "500": {
+            "description": "Failed to delete movie"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GetUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 123
+        },
+        "name": {
+          "type": "string",
+          "example": "Example Name"
+        },
+        "email": {
+          "type": "string",
+          "example": "example@mail.com"
+        }
+      }
+    },
+    "CreateUser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Example Name"
+        },
+        "email": {
+          "type": "string",
+          "example": "example@mail.com"
+        }
+      }
+    }
+  }
+}
