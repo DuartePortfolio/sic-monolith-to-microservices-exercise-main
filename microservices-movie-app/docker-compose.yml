@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  movies-service:
+    build:
+      context: .
+      dockerfile: movies-service/Dockerfile
+    container_name: movies-service
+    ports:
+      - "3002:3002"
+    depends_on:
+      - reviews-service
+      - users-service
+
+  reviews-service:
+    build:
+      context: .
+      dockerfile: reviews-service/Dockerfile
+    container_name: reviews-service
+    ports:
+      - "3003:3003"
+
+  users-service:
+    build:
+      context: .
+      dockerfile: users-service/Dockerfile
+    container_name: users-service
+    ports:
+      - "3001:3001"
+
+networks:
+  default:
+    driver: bridge
