@@ -7,6 +7,7 @@ WORKDIR /usr/src/app
 COPY package.json ./
 
 RUN npm install --production
+ENV NODE_ENV=production
 
 # Copy this service sources
 COPY users-service/ ./
